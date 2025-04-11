@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - JoeKym</title>
+    <meta name="description" content="JoeKym - Web Developer and Programmer. Passionate about coding, problem-solving, and technology.">
+    <meta name="keywords" content="Web Development, Programming, JavaScript, Python, JoeKym">
+    <meta name="author" content="JoeKym">
+
+    <!-- Open Graph (SEO) -->
+    <meta property="og:title" content="About Me - JoeKym">
+    <meta property="og:description" content="JoeKym - Web Developer and Programmer. Passionate about coding, problem-solving, and technology.">
+    <meta property="og:image" content="URL_TO_YOUR_IMAGE">
+    <meta property="og:type" content="website">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome (Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #eef2f3;
+            color: #2d3436;
+            text-align: center;
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .about-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .about-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .about-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid #3498db;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        section {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .skills ul, .hobbies ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 10px 0;
+        }
+        .skills ul li, .hobbies ul li {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .skills ul li:hover, .hobbies ul li:hover {
+            background: #2c3e50;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin: 5px;
+            transition: background 0.3s;
+            font-size: 18px;
+        }
+        .social-links a:hover {
+            background: #2c3e50;
+        }
+
+        .back-button, .top-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .back-button:hover, .top-button:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .top-button {
+            background: #27ae60;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .dark-mode .about-container {
+            background: #34495e;
+        }
+        .dark-mode h1 {
+            color: #1abc9c;
+        }
+        .dark-mode p {
+            color: #ecf0f1;
+        }
+        .dark-mode .skills ul li, 
+        .dark-mode .hobbies ul li, 
+        .dark-mode .social-links a {
+            background: #1abc9c;
+        }
+        .dark-mode .skills ul li:hover, 
+        .dark-mode .hobbies ul li:hover, 
+        .dark-mode .social-links a:hover {
+            background: #16a085;
+        }
+
+        .toggle-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .toggle-btn:hover {
+            background: #e67e22;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 26px;
+            }
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="about-container">
+        <!-- Profile Picture -->
+        <img src="Screenshot_20250327_114357_WhatsApp.jpg" alt="Profile Picture">
+
+        <h1>JoeKym</h1>
+        <p>Hello! I'm JoeKym, a passionate web developer and programmer. I specialize in creating interactive and visually appealing websites while solving complex problems through technology.</p>
+
+        <!-- Skills Section -->
+        <section class="skills">
+            <h2>Skills & Tech Stack</h2>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>React</li>
+                <li>Node.js</li>
+                <li>SQL</li>
+                <li>Git & GitHub</li>
+            </ul>
+        </section>
+
+        <!-- Social Media Links with Icons -->
+        <div class="social-links">
+            <a href="https://github.com/JoeKym/3-4248" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://x.com/JoeKym07?t=xRHo8A-tvVa0_5j81V8r6g&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+        <!-- Back & Top Buttons -->
+        <a href="JoeKym.html" class="back-button">← Back to Home</a>
+        <a href="#" class="top-button">↑ Back to Top</a>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+        }
+        window.onload = function () {
+            if (localStorage.getItem("dark-mode") === "true") {
+                document.body.classList.add("dark-mode");
+            }
+        };
+    </script>
+
+</body>
+</html>

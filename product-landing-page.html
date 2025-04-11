@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoeKym - Web Development Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Roboto', sans-serif; }
+        body { background: #f4f7fa; color: #333; line-height: 1.6; }
+        .header { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 60px 20px; text-align: center; }
+        .header h1 { font-size: 48px; margin-bottom: 10px; }
+        .header p { font-size: 20px; opacity: 0.9; }
+        .cta-btn { display: inline-block; padding: 12px 30px; background: #ff6f61; color: white; text-decoration: none; border-radius: 25px; margin-top: 20px; transition: transform 0.3s; }
+        .cta-btn:hover { transform: scale(1.05); }
+        .features { padding: 40px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .feature-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        .feature-card h3 { font-size: 22px; margin-bottom: 10px; color: #2a5298; }
+        .feature-card p { font-size: 16px; color: #666; }
+        .footer { background: #343a40; color: white; padding: 20px 0; text-align: center; }
+        .footer p { font-size: 16px; }
+        .footer a { color: #ff6f61; text-decoration: none; font-weight: bold; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 600px) { .header h1 { font-size: 36px; } .header p { font-size: 16px; } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>JoeKym Web Development</h1>
+        <p>Innovative solutions for all your web needs</p>
+        <a href="#services" class="cta-btn">Explore My Work</a>
+    </header>
+    
+    <section class="features" id="services">
+        <div class="feature-card">
+            <h3>Responsive Websites</h3>
+            <p>Custom-designed websites that look amazing on any device.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Full Stack Development</h3>
+            <p>Expertise in both front-end and back-end development for robust websites.</p>
+        </div>
+        <div class="feature-card">
+            <h3>UI/UX Design</h3>
+            <p>Beautiful and functional user interfaces for seamless user experiences.</p>
+        </div>
+    </section>
+
+    <section class="footer">
+        <p>Interested in working together? <a href="mailto:joe@joekym.com">Contact me</a> today!</p>
+    </section>
+</body>
+</html>

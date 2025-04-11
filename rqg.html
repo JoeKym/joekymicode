@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultimate Quote Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background 0.5s ease;
+      font-size: 16px;
+    }
+    body.dark {
+      background: #121212;
+      color: #ffffff;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      max-width: 800px;
+      width: 95%;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+    }
+    body.dark .container {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .quote {
+      font-size: 30px;
+      color: #f8f9fa;
+      margin-bottom: 20px;
+      min-height: 80px;
+      transition: all 0.5s ease;
+      font-weight: bold;
+      line-height: 1.5;
+      opacity: 0;
+    }
+    body.dark .quote {
+      color: #e0e0e0;
+    }
+    .quote.show {
+      opacity: 1;
+    }
+    .author {
+      font-size: 20px;
+      color: #ced4da;
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+    body.dark .author {
+      color: #b0b0b0;
+    }
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 12px 30px;
+      background: #4263eb;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 16px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .btn:hover {
+      background: #364fc7;
+    }
+    .fav-list {
+      margin-top: 30px;
+      text-align: left;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #212529;
+      padding: 15px;
+      border-radius: 15px;
+    }
+    body.dark .fav-list {
+      background: #333;
+    }
+    .fav-item {
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #f1f3f5;
+    }
+    body.dark .fav-item {
+      color: #f8f9fa;
+    }
+    .fav-item:hover {
+      color: #f8f9fa;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .export-area {
+      margin-top: 20px;
+      text-align: left;
+    }
+    .export-area textarea {
+      width: 100%;
+      height: 150px;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      resize: none;
+      background: #212529;
+      color: #f1f3f5;
+      font-size: 14px;
+    }
+    body.dark .export-area textarea {
+      background: #333;
+    }
+    .export-area h3 {
+      color: #f8f9fa;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #f1f3f5;
+      color: #212529;
+      border-radius: 50%;
+      padding: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    body.dark .dark-mode-toggle {
+      background: #333;
+      color: #f1f3f5;
+    }
+    .dark-mode-toggle:hover {
+      background: #ced4da;
+    }
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .footer a {
+      color: white;
+      font-size: 25px;
+      transition: 0.3s;
+    }
+    body.dark .footer a {
+      color: #f1f3f5;
+    }
+    .footer a:hover {
+      color: #4263eb;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="quote" id="quote"></div>
+    <div class="author" id="author"></div>
+    <div class="buttons">
+      <button class="btn" onclick="prevQuote()">Back</button>
+      <button class="btn" onclick="getQuote()">Next</button>
+      <button class="btn" onclick="saveFavorite()">Favorite</button>
+    </div>
+    <div class="fav-list" id="favList"></div>
+    <div class="export-area">
+      <h3>Export Favorites:</h3>
+      <textarea id="exportArea" readonly></textarea>
+    </div>
+  </div>
+  <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
+  <div class="footer">
+    <a href="https://api.whatsapp.com/send?text=" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://t.me/share/url?url=" target="_blank">
+      <i class="fab fa-telegram-plane"></i>
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+  <script>
+    const quoteEl = document.getElementById('quote');
+    const authorEl = document.getElementById('author');
+    const favListEl = document.getElementById('favList');
+    const exportArea = document.getElementById('exportArea');
+    let currentIndex = -1;
+    let history = [];
+    let favorites = [];
+
+    const quotes = [
+      {"content": "Be yourself; everyone else is already taken.", "author": "Oscar Wilde"},
+      {"content": "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.", "author": "Albert Einstein"},
+      {"content": "So many books, so little time.", "author": "Frank Zappa"},
+      {"content": "A room without books is like a body without a soul.", "author": "Marcus Tullius Cicero"},
+      {"content": "Be the change that you wish to see in the world.", "author": "Mahatma Gandhi"},
+      {"content": "In three words I can sum up everything I've learned about life: it goes on.", "author": "Robert Frost"},
+      {"content": "If you tell the truth, you don't have to remember anything.", "author": "Mark Twain"},
+      {"content": "Always forgive your enemies; nothing annoys them so much.", "author": "Oscar Wilde"},
+      {"content": "Live as if you were to die tomorrow. Learn as if you were to live forever.", "author": "Mahatma Gandhi"},
+      {"content": "Without music, life would be a mistake.", "author": "Friedrich Nietzsche"}
+    ];
+
+    function getQuote() {
+      currentIndex++;
+      if (currentIndex >= quotes.length) currentIndex = 0;
+      history.push(currentIndex);
+      showQuote(quotes[currentIndex]);
+      updateShareLinks();
+    }
+
+    function prevQuote() {
+      if (history.length > 1) {
+        history.pop();
+        currentIndex = history[history.length - 1];
+        showQuote(quotes[currentIndex]);
+        updateShareLinks();
+      }
+    }
+
+    function showQuote(quoteObj) {
+      quoteEl.classList.remove('show');
+      setTimeout(() => {
+        quoteEl.textContent = `"${quoteObj.content}"`;
+        authorEl.textContent = `- ${quoteObj.author}`;
+        quoteEl.classList.add('show');
+      }, 300);
+    }
+
+    function saveFavorite() {
+      const quote = quotes[currentIndex];
+      const exists = favorites.some(fav => fav.content === quote.content);
+      if (!exists) {
+        favorites.push(quote);
+        renderFavorites();
+      }
+    }
+
+    function renderFavorites() {
+      favListEl.innerHTML = '<h3>Favorites:</h3>';
+      favorites.forEach((fav) => {
+        const item = document.createElement('div');
+        item.className = 'fav-item';
+        item.textContent = `"${fav.content}" — ${fav.author}`;
+        favListEl.appendChild(item);
+      });
+      exportArea.value = JSON.stringify(favorites, null, 2);
+    }
+
+    function updateShareLinks() {
+      const quote = quotes[currentIndex];
+      const text = encodeURIComponent(`"${quote.content}" - ${quote.author}`);
+      const shareLinks = document.querySelectorAll('.footer a');
+      shareLinks.forEach(link => {
+        link.href = link.href.replace('?', `?text=${text}`);
+      });
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    getQuote();
+  </script>
+</body>
+</html>
